@@ -12,7 +12,7 @@ export const useUserStore = defineStore('user', {
   },
   getters: {},
   actions: {
-    setUser(data: IUser) {
+    setUser(data: IUser | null) {
       this.user = data
       //防止页面刷新导致数据丢失，需要把数据放到本地存储中进行持久化
       //   localStorage.setItem('user', JSON.stringify(this.user))

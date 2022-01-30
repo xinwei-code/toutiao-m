@@ -69,6 +69,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { Form, NavBar, Field, Button, Toast, CountDown } from 'vant'
+import { useRouter } from 'vue-router'
 
 import { useUserStore } from '../store/user'
 import useCurrentInstance from '../hooks/useCurrentInstance'
@@ -77,6 +78,7 @@ import { ILoginInfo } from '../types/loginInfo'
 import { FormExpose } from 'vant/lib/form/types'
 
 const userStore = useUserStore()
+const router = useRouter()
 //获取当前实例
 const { proxy } = useCurrentInstance()
 
@@ -97,8 +99,8 @@ const formRules = {
 }
 //用户信息
 const loginInfo = reactive<ILoginInfo>({
-  mobile: '18300087337',
-  code: '246810',
+  mobile: '',
+  code: '',
 })
 
 //控制倒计时组件和发送短信验证码的显示与隐藏
@@ -122,6 +124,9 @@ const onLogin = async () => {
 
     //将后端返回的用户登录状体（token等数据 放到Pinia 容器中）
     // this.store.commit('setUser', data.data)
+
+    //登陆成功，跳转首页
+    router.back()
     userStore.setUser(data.data)
   } catch (error) {
     console.log(error)

@@ -4,7 +4,7 @@
 //读取
 export const getItem = (name: string) => {
   const data = localStorage.getItem(name)
-  return JSON.parse(data || '{}')
+  return JSON.parse(data as string)
 }
 
 //存
