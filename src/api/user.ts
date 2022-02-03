@@ -1,8 +1,5 @@
 import request from '../utils/request'
-import { ILoginInfo } from '../types/loginInfo'
-import { useUserStore } from '../store/user'
-
-// const userStore = useUserStore()
+import { ILoginInfo } from '../types/user'
 
 /* 
 用户登录
@@ -25,7 +22,6 @@ export const sendSms = (mobile: string) => {
   })
 }
 
-
 /* 
 获取登录用户的信息
 */
@@ -39,3 +35,12 @@ export const getCurrentUser = () => {
   })
 }
 
+/* 
+获取登录用户频道列表
+*/
+export const getUserChannels = () => {
+  return request({
+    method: 'GET',
+    url: 'app/v1_0/user/channels', //  app/v1_0/user/channels
+  })
+}

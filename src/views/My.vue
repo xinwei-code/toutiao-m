@@ -84,7 +84,7 @@ import { onBeforeMount, ref } from 'vue'
 import { Cell, CellGroup, Button, Image, Grid, GridItem } from 'vant'
 import { Dialog } from 'vant'
 
-import { ICurrentUser } from '../types/currentUser'
+import { ICurrentUser } from '../types/user'
 import { useUserStore } from '../store/user'
 import { getCurrentUser } from '../api/user'
 
@@ -127,7 +127,7 @@ const onLogOut = () => {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .my-container {
   // 登陆后
   .my-info {

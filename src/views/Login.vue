@@ -74,7 +74,7 @@ import { useRouter } from 'vue-router'
 import { useUserStore } from '../store/user'
 import useCurrentInstance from '../hooks/useCurrentInstance'
 import { login, sendSms } from '../api/user'
-import { ILoginInfo } from '../types/loginInfo'
+import { ILoginInfo } from '../types/user'
 import { FormExpose } from 'vant/lib/form/types'
 
 const userStore = useUserStore()
@@ -99,8 +99,8 @@ const formRules = {
 }
 //用户信息
 const loginInfo = reactive<ILoginInfo>({
-  mobile: '',
-  code: '',
+  mobile: '18300087337',
+  code: '246810',
 })
 
 //控制倒计时组件和发送短信验证码的显示与隐藏

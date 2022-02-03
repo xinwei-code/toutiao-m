@@ -8,6 +8,8 @@ import { createPinia } from 'pinia'
 //引入路由
 import router from './router'
 
+//转换时间
+// import { toRelativeTime } from './utils/dayjs'
 
 //自动设置 rem 基准值（html标签的字体大小）
 import 'amfe-flexible'
@@ -18,7 +20,8 @@ import './styles/index.less'
 const pinia = createPinia()
 
 const app = createApp(App)
-// app.use(Button)
+
+// app.config.globalProperties.$relativeTime = toRelativeTime
 app.use(router)
 app.use(pinia)
 app.mount('#app')

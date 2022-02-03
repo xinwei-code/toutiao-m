@@ -8,6 +8,7 @@ const Home = () => import('../views/Home.vue')
 const My = () => import('../views/My.vue')
 const Video = () => import('../views/Video.vue')
 const Qa = () => import('../views/Qa.vue')
+const Search = () => import('../views/Search/index.vue')
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
@@ -26,6 +27,8 @@ const routes = [
   },
   //登录页
   { path: '/login', name: 'login', component: Login },
+  //搜索页面
+  { path: '/search', name: 'search', component: Search },
 ]
 
 // 3. 创建路由实例并传递 `routes` 配置
