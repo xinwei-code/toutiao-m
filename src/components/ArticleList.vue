@@ -75,8 +75,11 @@ const loading = ref(false)
 //上拉加载完成
 const finished = ref(false)
 
-//列表加载的回调(Vant的list组件默认会撑满列表的高度，所以页面刚加载时发了三次请求，第一次results为 [])
+//列表加载的回调(Vant的list组件默认会撑满列表的高度，所以页面刚加载时发了三次请求
+//第一次results为 []，props为undefined)
 const onLoad = async () => {
+  // console.log(channel.id);
+  
   // 异步更新数据
   //1.请求获取数据
   const {

@@ -1,7 +1,11 @@
 <template>
   <!-- <div class="article-item">文章列表项</div>
+  @click="$router.push(`/article/${article.art_id}`)"
    -->
-  <Cell class="article-item">
+  <Cell
+    class="article-item"
+    :to="{ name: 'article', params: { articleId: article.art_id } }"
+  >
     <template #title>
       <div class="title van-multi-ellipsis--l3">
         {{ article.title }}
@@ -20,7 +24,7 @@
       <div class="label-wrap">
         <span>{{ article.aut_name }}</span>
         <span>{{ article.comm_count }}评论</span>
-        <span>{{toRelativeTime(article.pubdate) }}</span>
+        <span>{{ toRelativeTime(article.pubdate) }}</span>
       </div>
     </template>
     <!-- 只有一张图片时，在右侧显示 -->
@@ -35,11 +39,11 @@
 </template>
 
 <script lang="ts" setup>
-import { toRefs } from 'vue'
+// import { toRefs } from 'vue'
 import { Cell, Image } from 'vant'
 
 // import useCurrentInstance from '../hooks/useCurrentInstance'
-import { toRelativeTime } from '../utils/dayjs';
+import { toRelativeTime } from '../utils/dayjs'
 import { IArticle } from '../types/article'
 
 // const { globalProperties } = useCurrentInstance()
