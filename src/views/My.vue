@@ -15,7 +15,7 @@
           <span class="nickname">{{ currentUser.name }}</span>
         </template>
         <template #right-icon>
-          <Button size="small" class="update-btn" round>编辑资料</Button>
+          <Button size="small" class="update-btn" round :to="{name:'profile'}">编辑资料</Button>
         </template>
       </Cell>
       <Grid :border="false" class="data-info">

@@ -29,3 +29,15 @@ export interface ICurrentUser {
   name: string
   photo: string
 }
+
+/* 
+用户个人资料
+*/
+export interface IUserProfile {
+  birthday: string
+  gender: number
+  id: number
+  mobile: string
+  name: string
+  photo: string
+}

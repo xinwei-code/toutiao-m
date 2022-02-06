@@ -67,3 +67,35 @@ export const deleteFollow = (userId: string) => {
     url: `app/v1_0/user/followings/${userId}`, //  app/v1_0/user/channels
   })
 }
+
+/* 
+获取用户个人资料
+*/
+export const getUserProfile = () => {
+  return request({
+    method: 'GET',
+    url: `app/v1_0/user/profile`, //  app/v1_0/user/channels
+  })
+}
+
+/* 
+编辑用户资料
+*/
+export const updateUserProfile = (data: any) => {
+  return request({
+    method: 'PATCH',
+    url: `app/v1_0/user/profile`, //  app/v1_0/user/channels
+    data,
+  })
+}
+
+/* 
+修改用户头像资料
+*/
+export const updateUserAvatar = (data: any) => {
+  return request({
+    method: 'PATCH',
+    url: `app/v1_0/user/photo`, //  app/v1_0/user/channels
+    data,
+  })
+}
