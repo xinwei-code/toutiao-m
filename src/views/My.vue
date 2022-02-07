@@ -4,18 +4,19 @@
       <Cell :border="false" center class="base-info">
         <template #icon>
           <!-- <Image class="avatar" :src="currentUser.photo" round fit="cover" /> -->
-          <Image
-            class="avatar"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
-            round
-            fit="cover"
-          />
+          <Image class="avatar" :src="currentUser.photo" round fit="cover" />
         </template>
         <template #title>
           <span class="nickname">{{ currentUser.name }}</span>
         </template>
         <template #right-icon>
-          <Button size="small" class="update-btn" round :to="{name:'profile'}">编辑资料</Button>
+          <Button
+            size="small"
+            class="update-btn"
+            round
+            :to="{ name: 'profile' }"
+            >编辑资料</Button
+          >
         </template>
       </Cell>
       <Grid :border="false" class="data-info">
@@ -47,7 +48,12 @@
     </CellGroup>
 
     <div class="not-login" v-else>
-      <div @click="$router.push('/login')">
+      <div @click="$router.push({
+        name:'login',
+        query:{
+          redirect:'/my'
+        }
+      })">
         <img class="mobile" src="../assets/unlogin-img.png" alt="" />
       </div>
       <div class="text">登录/注册</div>
@@ -68,8 +74,8 @@
       />
     </Grid>
 
-    <Cell title="消息通知" to="/" />
-    <Cell title="小智同学" to="" class="mb-4" />
+    <Cell is-link title="消息通知" to="/" />
+    <Cell is-link title="小智同学" to="/user/chat" class="mb-4" />
     <Cell
       class="logout"
       title="退出登录"

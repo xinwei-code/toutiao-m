@@ -8,7 +8,6 @@ import { createPinia } from 'pinia'
 //引入路由
 import router from './router'
 
-
 //转换时间
 // import { toRelativeTime } from './utils/dayjs'
 
@@ -23,6 +22,7 @@ const pinia = createPinia()
 const app = createApp(App)
 
 // app.config.globalProperties.$relativeTime = toRelativeTime
-app.use(router)
+
 app.use(pinia)
+app.use(router)
 app.mount('#app')

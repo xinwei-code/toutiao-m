@@ -54,9 +54,9 @@ const onConfirm = async () => {
     forbidClick: true,
     duration: 0, //0表示持续展示
   })
-  const file = await getCropperCanvas()
+  const file: any = await getCropperCanvas()
   const fd = new FormData()
-  fd.append('photo', file as Blob)
+  fd.append('photo', file)
   //如果要求 Content-Type 是 multipart/form-data,
   // 则一定要提交 FormData数据对象，专门用于文件上传的，不能提交 {}， 没用
   /*   const fd = new FormData()

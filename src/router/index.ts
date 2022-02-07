@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { Dialog } from 'vant'
+
 import { routes } from './routes'
+import { useUserStore } from '../store/user'
+// const userStore = useUserStore()
 
 // 1. 定义路由组件.
 // 也可以从其他文件导入
@@ -15,13 +19,53 @@ import { routes } from './routes'
 // 暂时保持简单
 
 //分别暴露
-/* export const router = createRouter({
-    history: createWebHashHistory(),
-    routes
-}) */
-
-//默认暴露
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes,
 })
+
+//beforeEach不支持链式调用
+router.beforeEach((to, from, next) => {
+  /* 
+to:要访问的页面路由信息
+from:来自哪个页面的路由信息
+next:放行的标记
+*/
+  //判断页面是否需要登录才能访问
+  if (to.meta.requiresAuth) {
+    //已登陆，直接放行
+/*     if (userStore.user) {
+      return next()
+    } */
+    Dialog.confirm({
+      title: '访问提示',
+      message: '该功能需要登录才能访问，确认登陆吗？',
+    })
+      .then(() => {
+        // on confirm,跳转到登陆页面
+        router.replace({
+          name: 'login',
+          query: {
+            redirect:router.currentRoute.value.fullPath
+          }
+        })
+      })
+      .catch(() => {
+        // on cancel， 中断路由导航
+        next(false)
+      })
+  } else {
+    //不需要登陆的页面，直接过去
+    next()
+  }
+  // 返回 false 以取消导航
+  return false
+})
+
+export default router
+
+//默认暴露
+/* export default createRouter({
+  history: createWebHistory(),
+  routes,
+}) */

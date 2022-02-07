@@ -72,12 +72,14 @@ import { Form, NavBar, Field, Button, Toast, CountDown } from 'vant'
 import { useRouter } from 'vue-router'
 
 import { useUserStore } from '../store/user'
+import { usePageStore } from '../store/page'
 import useCurrentInstance from '../hooks/useCurrentInstance'
 import { login, sendSms } from '../api/user'
 import { ILoginInfo } from '../types/user'
 import { FormExpose } from 'vant/lib/form/types'
 
 const userStore = useUserStore()
+const pageStore = usePageStore()
 const router = useRouter()
 //获取当前实例
 const { proxy } = useCurrentInstance()
@@ -125,9 +127,12 @@ const onLogin = async () => {
     //将后端返回的用户登录状体（token等数据 放到Pinia 容器中）
     // this.store.commit('setUser', data.data)
 
-    //登陆成功，跳转首页
-    router.back()
+    //登陆成功，跳转首页(不推荐这种方式)
+    // router.back()  
+    router.push(router.currentRoute.value.query.redirect as string || '/')
     userStore.setUser(data.data)
+    //清除LayOut的缓存，让他重新渲染
+    pageStore.removeCachePage('LayOut')
   } catch (error) {
     console.log(error)
     Toast.fail('登录失败，手机号或验证码错误')
