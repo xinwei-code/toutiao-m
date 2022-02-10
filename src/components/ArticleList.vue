@@ -1,5 +1,5 @@
 <template>
-  <div class="article-list">
+  <div class="article-list"  ref="articleList">
     <PullRefresh
       :success-duration="1000"
       :success-text="refreshSuccessText"
@@ -28,13 +28,33 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, reactive } from 'vue'
+import { ref, Ref,defineProps, reactive,onMounted,onActivated } from 'vue'
 import { IChannel } from '../types/user'
 import { List, Cell, PullRefresh } from 'vant'
+import { debounce } from 'lodash'
 
 import ArticleItem from './ArticleItem.vue'
 import { getArticles } from '../api/article'
 import { IArticle } from '../types/article'
+
+
+//文章列表
+const articleList = ref() as Ref<HTMLDivElement>
+
+//文章列表距离顶部的距离
+const scrollTop = ref(0)
+
+onMounted(() => {
+  articleList.value.onscroll = debounce(() => {
+    scrollTop.value = articleList.value.scrollTop
+  }, 50)
+})
+
+//当组件从缓存中被激活
+onActivated(() => {
+  console.log('scroll');
+  articleList.value.scrollTop = scrollTop.value
+})
 
 const { channel } = defineProps<{ channel: IChannel }>()
 
@@ -104,6 +124,7 @@ const onLoad = async () => {
   if (timestamp.value === 0) finished.value = true
 }
 </script>
+
 
 <style lang="less" scoped>
 .article-list {

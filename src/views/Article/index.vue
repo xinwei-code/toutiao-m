@@ -1,6 +1,6 @@
 <template>
   <!-- 导航栏 -->
-  <div class="article-containner" ref="articleList">
+  <div class="article-containner">
     <NavBar
       class="app-nav-bar"
       title="文章详情"
@@ -121,15 +121,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  ref,
-  onBeforeMount,
-  onMounted,
-  reactive,
-  nextTick,
-  Ref,
-  onActivated,
-} from 'vue'
+import { ref, onBeforeMount, reactive, nextTick, Ref } from 'vue'
 import {
   Image,
   NavBar,
@@ -140,7 +132,6 @@ import {
   Toast,
   Popup,
 } from 'vant'
-import { debounce } from 'lodash'
 
 import commentReply from './components/comment-reply.vue'
 import postComment from './components/post-comment.vue'
@@ -167,25 +158,8 @@ const props = defineProps<{ articleId: string }>()
 //评论的总数量
 const commentCount = ref(0)
 
-//文章列表
-const articleList = ref() as Ref<HTMLDivElement>
-
-//文章列表距离顶部的距离
-const scrollTop = ref(0)
-
 onBeforeMount(() => {
   loadArticle()
-})
-
-onMounted(() => {
-  articleList.value.onscroll = debounce(() => {
-    scrollTop.value = articleList.value.scrollTop
-  }, 50)
-})
-
-//当组件从缓存中被激活
-onActivated(() => {
-  articleList.value.scrollTop = scrollTop.value
 })
 
 //文章内容的 DOM 容器
