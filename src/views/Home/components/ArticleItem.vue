@@ -43,8 +43,8 @@
 import { Cell, Image } from 'vant'
 
 // import useCurrentInstance from '../hooks/useCurrentInstance'
-import { toRelativeTime } from '../utils/dayjs'
-import { IArticle } from '../types/article'
+import { toRelativeTime } from '../../../utils/dayjs'
+import { IArticle } from '../../../types/article'
 
 // const { globalProperties } = useCurrentInstance()
 

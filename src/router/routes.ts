@@ -1,6 +1,6 @@
 const LayOut = () => import('../views/LayOut.vue')
 const Login = () => import('../views/Login.vue')
-const Home = () => import('../views/Home.vue')
+const Home = () => import('../views/Home/index.vue')
 const My = () => import('../views/My.vue')
 const Video = () => import('../views/Video.vue')
 const Qa = () => import('../views/Qa.vue')

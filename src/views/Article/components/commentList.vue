@@ -31,7 +31,7 @@ import { IComment } from '../../../types/comment'
 
 const emit = defineEmits(['updateTotalCount', 'replyClick'])
 
-const props = withDefaults(defineProps<{ source: number; type: string }>(), {
+const props = withDefaults(defineProps<{ source: number; type?: string }>(), {
   source: 1,
   //获取文章评论使用字符 'a'
   //获取评论回复使用字符 'c'
@@ -76,7 +76,6 @@ const onLoad = async () => {
     offset: offset.value,
     limit: limit.value,
   })
-  console.log(data)
 
   //2.把数据放到列表中
   list.results.push(...data.data.results)

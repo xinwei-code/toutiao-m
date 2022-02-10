@@ -58,12 +58,12 @@
 import { ref, onBeforeMount, reactive } from 'vue'
 import { NavBar, Button, Tab, Tabs, Popup, Icon } from 'vant'
 
-import { useUserStore } from '../store/user'
-import ChannelEdit from '../components/ChannelEdit.vue'
-import ArticleList from '../components/ArticleList.vue'
-import { getUserChannels } from '../api/user'
-import { IChannel } from '../types/user'
-import { getItem } from '../utils/storage'
+import { useUserStore } from '../../store/user'
+import ChannelEdit from '../../components/ChannelEdit.vue'
+import ArticleList from './components/ArticleList.vue'
+import { getUserChannels } from '../../api/user'
+import { IChannel } from '../../types/user'
+import { getItem } from '../../utils/storage'
 
 const userStore = useUserStore()
 //控制被激活的tab

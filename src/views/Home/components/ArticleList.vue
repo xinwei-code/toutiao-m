@@ -29,13 +29,13 @@
 
 <script setup lang="ts">
 import { ref, Ref,defineProps, reactive,onMounted,onActivated } from 'vue'
-import { IChannel } from '../types/user'
+import { IChannel } from '../../../types/user'
 import { List, Cell, PullRefresh } from 'vant'
 import { debounce } from 'lodash'
 
 import ArticleItem from './ArticleItem.vue'
-import { getArticles } from '../api/article'
-import { IArticle } from '../types/article'
+import { getArticles } from '../../../api/article'
+import { IArticle } from '../../../types/article'
 
 
 //文章列表

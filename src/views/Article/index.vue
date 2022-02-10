@@ -55,7 +55,7 @@
       <!-- / 文本内容 -->
 
       <!-- 评论内容区域 -->
-      <span style="font-size: 16px">全部评论</span>
+      <!-- <span style="font-size: 16px">全部评论</span> -->
       <commentList
         v-if="article.data.art_id"
         :source="article.data.art_id"
