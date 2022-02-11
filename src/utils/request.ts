@@ -90,7 +90,7 @@ const redirectLogin = () => {
     //传递查询参数，查询参数会以分隔符放到url后面
     query: {
       //数据名自己取  router.currentRoute.value === $router
-      redirect: router.currentRoute.value.fullPath
+      redirect: router.currentRoute.value.fullPath,
     },
   })
 }

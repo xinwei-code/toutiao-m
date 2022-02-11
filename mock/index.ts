@@ -7,7 +7,11 @@ export default [
     response: {
       code: 200,
       data: {
-        name: 'vben',
+        'name|10': 'vben',
+        image: '@image(200x100)',
+        url: '@url(http)',
+        page: '@csentence(50)',
+        time:'@date(yyyy-MM-dd)'
       },
     },
   },

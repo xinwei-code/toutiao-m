@@ -3,7 +3,12 @@ import { Dialog } from 'vant'
 
 import { routes } from './routes'
 import { useUserStore } from '../store/user'
-// const userStore = useUserStore()
+
+/* 
+// ❌ Depending on the order of imports this will fail
+不能在这里使用store
+const store = useStore()
+*/
 
 // 1. 定义路由组件.
 // 也可以从其他文件导入
@@ -26,6 +31,7 @@ const router = createRouter({
 
 //beforeEach不支持链式调用
 router.beforeEach((to, from, next) => {
+  const userStore = useUserStore()
   /* 
 to:要访问的页面路由信息
 from:来自哪个页面的路由信息
@@ -34,9 +40,9 @@ next:放行的标记
   //判断页面是否需要登录才能访问
   if (to.meta.requiresAuth) {
     //已登陆，直接放行
-/*     if (userStore.user) {
+    if (userStore.user) {
       return next()
-    } */
+    }
     Dialog.confirm({
       title: '访问提示',
       message: '该功能需要登录才能访问，确认登陆吗？',
@@ -46,8 +52,8 @@ next:放行的标记
         router.replace({
           name: 'login',
           query: {
-            redirect:router.currentRoute.value.fullPath
-          }
+            redirect: router.currentRoute.value.fullPath,
+          },
         })
       })
       .catch(() => {
