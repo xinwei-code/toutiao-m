@@ -11,7 +11,8 @@ const refreshTokenReq = axios.create({
 })
 
 const instance = axios.create({
-  baseURL: 'http://api-toutiao-web.itheima.net/',
+  // baseURL: 'http://api-toutiao-web.itheima.net/',
+  baseURL: '/api',
   timeout: 5000,
 })
 
