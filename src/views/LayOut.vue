@@ -1,6 +1,5 @@
 <template>
-  <!-- 路由出口 -->
-
+  <!-- 路由出口 --> 
   <router-view v-slot="{ Component }">
     <keep-alive>
       <component :is="Component"></component>

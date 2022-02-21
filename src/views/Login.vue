@@ -101,7 +101,7 @@ const formRules = {
 }
 //用户信息
 const loginInfo = reactive<ILoginInfo>({
-  mobile: '18300087337',
+  mobile: '13844610347',
   code: '246810',
 })
 
