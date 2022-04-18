@@ -5,7 +5,7 @@
     <Search
       v-model="searchText"
       placeholder="请输入搜索关键词"
-      background="#4fc08d"
+      background="#3296fa"
       show-action
       @search="onSearch"
       @cancel="$router.back()"

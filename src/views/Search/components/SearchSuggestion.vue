@@ -38,8 +38,19 @@ watch(
   { immediate: true }
 )
 
-//文字高亮
+/**
+ * 文字高亮  
+ * @param str string
+ */
 const heightlight = (str: string) => {
+  /* 
+  正则表达式中/i,/g,/ig,/gi,/m的区别和含义
+/i (忽略大小写)
+/g (全文查找出现的所有匹配字符)
+/m (多行查找)
+/gi(全文查找、忽略大小写)
+/ig(全文查找、忽略大小写)
+  */
   return str.replace(
     new RegExp(props.searchText, 'gi'),
     `<span style="color:red">${props.searchText}</span>`

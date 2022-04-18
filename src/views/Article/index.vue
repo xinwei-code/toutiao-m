@@ -211,7 +211,7 @@ const onFollow = async () => {
   isFollowLoading.value = true
   if (article.data.is_followed) {
     //取消关注（接口有问题）
-    // await deleteFollow(String(article.data.aut_id))
+    await deleteFollow(String(article.data.aut_id))
   } else {
     //添加关注
     await addFollow(String(article.data.aut_id))
@@ -229,7 +229,7 @@ const onCollect = async () => {
   })
   if (article.data.is_collected) {
     //取消收藏(接口有问题)
-    // await deleteCollect(String(article.data.art_id))
+    await deleteCollect(String(article.data.art_id))
   } else {
     //添加收藏
     await addCollect(String(article.data.art_id))
@@ -247,7 +247,7 @@ const onLike = async () => {
   })
   if (article.data.attitude === 1) {
     //已点赞，取消点赞(接口有问题)
-    // await deleteLike(String(article.data.art_id))
+    await deleteLike(String(article.data.art_id))
     article.data.attitude = -1
   } else {
     //未点赞，添加点赞
