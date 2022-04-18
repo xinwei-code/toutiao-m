@@ -11,8 +11,10 @@ const refreshTokenReq = axios.create({
 })
 
 const instance = axios.create({
-  // baseURL: 'http://api-toutiao-web.itheima.net/',
-  baseURL: '/api',
+  //本地
+  baseURL: 'http://api-toutiao-web.itheima.net/',
+  //线上
+  // baseURL: '/api',
   timeout: 5000,
 })
 
@@ -51,7 +53,7 @@ instance.interceptors.response.use(
       如果没有 user 或者 user.token,直接去登录
       如果有 refresh_token,则请求获取新的token
       拿到新的token之后把它更新到容器中
-      //把失败的请求重新发出去
+      把失败的请求重新发出去
       */
       if (!userStore.user || !userStore.user.token) {
         return redirectLogin()

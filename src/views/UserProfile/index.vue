@@ -118,7 +118,7 @@
     >
       <UpdateAvatar
       v-if="isUpdateAvatarShow"
-        :file="(previewImage as Blob)"
+        :file="(previewImage as File)"
         @update-avatar="user.data.photo = $event"
         @close="isUpdateAvatarShow = false"
       />
@@ -164,7 +164,7 @@ const isUpdateBirthdayShow = ref(false)
 const isUpdateAvatarShow = ref(false)
 
 //上传预览图片
-const previewImage = ref<Blob>()
+const previewImage = ref<File>()
 
 //file类型的input
 // const fileInput = ref() as Ref<HTMLInputElement>
@@ -177,7 +177,7 @@ const onFileChange = () => {
   isUpdateAvatarShow.value = true
 
   //图片预览
-  const file = fileInput.value.files[0]
+  const file:File = fileInput.value.files[0]
   previewImage.value = file
   //为了解决相同文件不触发 change事件，
   //所以在这里手动清空file 的value

@@ -29,18 +29,21 @@ onMounted(() => {
     background: false, //是否显示默认背景
     movable: true, //图片是否可以移动
   })
+  // console.log(cropper.value)
 })
 const emit = defineEmits(['updateAvatar', 'close'])
-const props = defineProps<{ file: Blob }>()
+const props = defineProps<{ file: File }>()
 
 //预览的图片
 const image = ref(window.URL.createObjectURL(props.file))
+//图片元素
 const img = ref<HTMLImageElement>()
 
 //裁切器实例
 const cropper = ref()
 
-const getCropperCanvas = () => {
+//获取裁剪后的图片二进制数据 Blob
+const getCropperCanvas = (): Promise<Blob> => {
   return new Promise(resolve => {
     cropper.value.getCroppedCanvas().toBlob((file: Blob) => {
       resolve(file)
@@ -54,21 +57,28 @@ const onConfirm = async () => {
     forbidClick: true,
     duration: 0, //0表示持续展示
   })
-  const file: any = await getCropperCanvas()
-  const fd = new FormData()
-  fd.append('photo', file)
-  //如果要求 Content-Type 是 multipart/form-data,
-  // 则一定要提交 FormData数据对象，专门用于文件上传的，不能提交 {}， 没用
-  /*   const fd = new FormData()
+  try {
+    const blob = await getCropperCanvas()
+    // const fileBlob = new File([blob], props.file.name)
+    const fd = new FormData()
+    fd.append('photo', blob)
+    //如果要求 Content-Type 是 multipart/form-data,
+    // 则一定要提交 FormData数据对象，专门用于文件上传的，不能提交普通{}， 没用
+    /*   const fd = new FormData()
   fd.append('photo', props.file) */
-  await updateUserAvatar(fd)
-  Toast.success('保存成功')
+    await updateUserAvatar(fd)
+    Toast.success('保存成功')
 
-  //更新父组件头像
-  // emit('updateAvatar', image.value)
-  emit('updateAvatar', window.URL.createObjectURL(file as Blob))
-  //关闭弹出层
-  emit('close')
+    //通知父组件更新头像
+    // emit('updateAvatar', image.value)
+    // emit('updateAvatar', window.URL.createObjectURL(fileBlob as Blob))
+    emit('updateAvatar', window.URL.createObjectURL(blob))
+    //关闭弹出层
+    emit('close')
+    Toast.clear()
+  } catch (error: any) {
+    Toast.fail('更新头像失败，图片体积过大。')
+  }
 }
 </script>
 
