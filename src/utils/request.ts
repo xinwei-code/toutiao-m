@@ -12,9 +12,9 @@ const refreshTokenReq = axios.create({
 
 const instance = axios.create({
   //本地
-  baseURL: 'http://api-toutiao-web.itheima.net/',
+  // baseURL: 'http://api-toutiao-web.itheima.net/',
   //线上
-  // baseURL: '/api',
+  baseURL: '/api',
   timeout: 5000,
 })
 
